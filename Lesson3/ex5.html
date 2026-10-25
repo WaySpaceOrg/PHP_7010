@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>คำนวณ BMI - บท 3.3</title>
+</head>
+<body>
+
+    <p>น้ำหนัก (กก.): <input id="weight" type="number"></p>
+    <p>ส่วนสูง (ซม.): <input id="height" type="number"></p>
+    <button id="calc">คำนวณ</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById("calc").addEventListener("click", function () {
+            var weightInput = document.getElementById("weight").value.trim();
+            var heightInput = document.getElementById("height").value.trim();
+
+            var weight = parseFloat(weightInput);
+            var heightCm = parseFloat(heightInput);
+
+            // เช็คว่าช่องใดช่องหนึ่งว่าง หรือค่า <= 0 หรือไม่ใช่ตัวเลข
+            if (weightInput === "" || heightInput === "" || isNaN(weight) || isNaN(heightCm) || weight <= 0 || heightCm <= 0) {
+                document.getElementById("result").innerText = "กรุณากรอกน้ำหนักและส่วนสูง";
+                return;
+            }
+
+            // แปลงส่วนสูงเป็นเมตร และคำนวณ BMI จริง
+            var heightM = heightCm / 100;
+            var bmi = weight / (heightM * heightM);
+
+            // จัดกลุ่มจากค่า BMI ก่อนปัดเศษ
+            var category = "";
+            if (bmi < 18.5) {
+                category = "น้ำหนักน้อย";
+            } else if (bmi < 25) { // 18.5 ขึ้นไป แต่น้อยกว่า 25
+                category = "ปกติ";
+            } else { // 25 ขึ้นไป
+                category = "น้ำหนักเกิน";
+            }
+
+            // แสดงผลลัพธ์ทศนิยม 1 ตำแหน่ง รูปแบบ: BMI 20.8 (ปกติ)
+            document.getElementById("result").innerText = "BMI " + bmi.toFixed(1) + " (" + category + ")";
+        });
+    </script>
+
+</body>
+</html>
