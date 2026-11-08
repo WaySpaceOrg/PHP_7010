@@ -1,72 +1,98 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LESSON3 • EX5 | PHP 7010</title>
-<style>:root{color-scheme:dark;--gold:#f5a623;--ink:#101827}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#203b60 0,transparent 38%),var(--ink);color:#f7f2e8;font:16px/1.65 "Segoe UI",Tahoma,sans-serif;min-height:100vh}.hero{padding:28px clamp(20px,6vw,80px) 42px;background:linear-gradient(120deg,#091426,#173a67 60%,#261b2b);border-bottom:3px solid var(--gold)}.nav{max-width:1080px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:16px}.brand{font-weight:900;color:#fff}.orb{display:inline-grid;place-items:center;width:36px;height:36px;margin-right:9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff5b6,#ffb52f 45%,#e35b18);color:#8c260b;border:2px solid #ffe09a}.eyebrow{color:#ffc45c;font-size:11px;letter-spacing:3px;font-weight:900;margin-top:28px}.hero h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin:10px 0}.hero h1 span{color:#ffbd45}.hero p{color:#d7e1ef;margin:0}.owner{background:#f5a623;color:#281807;padding:13px clamp(20px,6vw,80px);font-weight:800}.owner small{display:block;font-weight:500}.wrap{max-width:1080px;margin:38px auto;padding:0 22px 65px}.panel{background:linear-gradient(145deg,#18263a,#142237);border:1px solid #ffffff24;border-radius:18px;padding:clamp(20px,4vw,36px);box-shadow:0 18px 45px #0004}.panel h2,.panel h1{color:#ffbd45}a{color:#ffbd45}button,.back{display:inline-block;border:0;border-radius:999px;padding:11px 18px;background:#f5a623;color:#241405;font-weight:900;text-decoration:none;cursor:pointer}input,select,textarea{max-width:100%;padding:10px 12px;border:1px solid #52647b;border-radius:9px;background:#101d30;color:#fff;font:inherit}label{display:inline-block;margin:9px 8px 5px 0}table{width:100%;border-collapse:collapse;margin:15px 0;background:#101d30}th,td{padding:11px;border:1px solid #52647b}img{max-width:100%;height:auto;border-radius:12px}@media(max-width:600px){.nav{align-items:flex-start;flex-direction:column}.panel{padding:18px}}</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LESSON3 • EX5 | เครื่องคิด BMI | PHP 7010</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--gold:#f5a623;--ink:#101827;--panel:#18263a;--muted:#b8c4d4}
+    body{min-height:100vh;margin:0;background:radial-gradient(circle at 80% 0,#203b60 0,transparent 38%),var(--ink);color:#f7f2e8;font:16px/1.65 "Segoe UI",Tahoma,sans-serif}
+    .hero{padding:25px clamp(20px,6vw,80px) 38px;background:linear-gradient(120deg,#091426,#173a67 60%,#261b2b);border-bottom:3px solid var(--gold)}
+    .nav-wrap{max-width:1080px;margin:auto}.brand{font-weight:900;color:#fff}.orb{display:inline-grid;place-items:center;width:36px;height:36px;margin-right:9px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff5b6,#ffb52f 45%,#e35b18);color:#8c260b;border:2px solid #ffe09a}
+    .eyebrow{color:#ffc45c;font-size:11px;letter-spacing:3px;font-weight:900;margin-top:27px}.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.05;margin:10px 0;font-weight:900}.hero h1 span{color:#ffbd45}.hero p{color:#d7e1ef;margin:0}
+    .owner{background:#f5a623;color:#281807;padding:12px clamp(20px,6vw,80px);font-weight:800}.owner small{display:block;font-weight:500}
+    .wrap{max-width:900px;margin:38px auto;padding:0 20px 60px}.panel{background:linear-gradient(145deg,#18263a,#142237);border:1px solid #ffffff24;border-radius:18px;padding:clamp(22px,4vw,38px);box-shadow:0 18px 45px #0004}
+    .panel h2{color:#ffbd45;font-weight:800}.form-label{color:#f7f2e8}.form-control{background:#101d30;border:1px solid #52647b;color:#fff}.form-control:focus{background:#101d30;color:#fff;border-color:#f5a623;box-shadow:0 0 0 .2rem #f5a62333}.btn-gold{background:#f5a623;color:#241405;font-weight:900;border:0}.btn-gold:hover{background:#ffc45c;color:#241405}.result{min-height:58px;padding:14px 16px;border-radius:12px;background:#101d30;border:1px solid #52647b;color:#fff}.hint{color:#b8c4d4;font-size:.9rem}.lesson-nav{max-width:900px;margin:0 auto 35px;padding:0 20px}.lesson-nav a{display:inline-block;padding:10px 16px;border-radius:999px;background:#f5a623;color:#101827;text-decoration:none;font-weight:800}.lesson-nav .secondary{background:transparent;border:1px solid #ffffff55;color:#fff}
+  </style>
 </head>
 <body>
-<header class="hero">
-<nav class="nav"><div class="brand"><span class="orb">★</span>PHP 7010 <small style="display:block;margin-left:48px;color:#ffc45c;font-size:10px;letter-spacing:3px">LEARNING UNIVERSE</small></div><a href="../index.html#lessons">บทเรียนทั้งหมด ↗</a></nav>
-<div class="eyebrow">DRAGON BALL INSPIRED • TRAINING STAGE</div>
-<h1>LESSON3 <span>EX5</span></h1>
-<p>ฝึกฝนทักษะการเขียนโปรแกรมไปอีกหนึ่งขั้น</p>
-</header>
-<div class="owner">WAYSPACEORG <small>PHP 7010 • Learning Project</small></div>
-<main class="wrap"><section class="panel">
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <title>คำนวณ BMI - บท 3.3</title>
-</head>
-<body>
+  <header class="hero">
+    <div class="nav-wrap d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div class="brand"><span class="orb">★</span>PHP 7010 <small class="d-block ms-5 text-warning" style="font-size:10px;letter-spacing:3px">LEARNING UNIVERSE</small></div>
+      <a class="link-warning fw-bold" href="../index.html#lessons">บทเรียนทั้งหมด ↗</a>
+    </div>
+    <div class="nav-wrap">
+      <div class="eyebrow">DRAGON BALL INSPIRED • TRAINING STAGE</div>
+      <h1>LESSON 3 <span>EXERCISE 5</span></h1>
+      <p>ฝึกคำนวณดัชนีมวลกาย (Body Mass Index)</p>
+    </div>
+  </header>
 
-    <p>น้ำหนัก (กก.): <input id="weight" type="number"></p>
-    <p>ส่วนสูง (ซม.): <input id="height" type="number"></p>
-    <button id="calc">คำนวณ</button>
-    <p id="result"></p>
+  <div class="owner">WAYSPACEORG <small>PHP 7010 • Learning Project</small></div>
 
-    <script>
-        document.getElementById("calc").addEventListener("click", function () {
-            var weightInput = document.getElementById("weight").value.trim();
-            var heightInput = document.getElementById("height").value.trim();
+  <main class="wrap">
+    <section class="panel">
+      <h2 class="h3 mb-2">เครื่องคิด BMI</h2>
+      <p class="hint mb-4">กรอกน้ำหนักเป็นกิโลกรัม และส่วนสูงเป็นเซนติเมตร จากนั้นกดคำนวณ</p>
 
-            var weight = parseFloat(weightInput);
-            var heightCm = parseFloat(heightInput);
+      <div class="mb-3">
+        <label for="weight" class="form-label">น้ำหนัก (กก.)</label>
+        <input class="form-control form-control-lg" id="weight" type="number" min="0" step="any" placeholder="เช่น 60">
+      </div>
+      <div class="mb-3">
+        <label for="height" class="form-label">ส่วนสูง (ซม.)</label>
+        <input class="form-control form-control-lg" id="height" type="number" min="0" step="any" placeholder="เช่น 170">
+      </div>
+      <button class="btn btn-gold btn-lg px-4" id="calc" type="button">คำนวณ BMI</button>
 
-            // เช็คว่าช่องใดช่องหนึ่งว่าง หรือค่า <= 0 หรือไม่ใช่ตัวเลข
-            if (weightInput === "" || heightInput === "" || isNaN(weight) || isNaN(heightCm) || weight <= 0 || heightCm <= 0) {
-                document.getElementById("result").innerText = "กรุณากรอกน้ำหนักและส่วนสูง";
-                return;
-            }
+      <div class="mt-4">
+        <p class="form-label fw-bold mb-2">ผลการคำนวณ</p>
+        <p id="result" class="result mb-0" aria-live="polite">ผลลัพธ์จะแสดงที่นี่</p>
+      </div>
+      <p class="hint mt-3 mb-0">เกณฑ์ทั่วไป: ต่ำกว่า 18.5 = น้ำหนักน้อย, 18.5 ถึงน้อยกว่า 25 = ปกติ, 25 ขึ้นไป = น้ำหนักเกิน</p>
+    </section>
+  </main>
 
-            // แปลงส่วนสูงเป็นเมตร และคำนวณ BMI จริง
-            var heightM = heightCm / 100;
-            var bmi = weight / (heightM * heightM);
+  <nav class="lesson-nav d-flex justify-content-between align-items-center flex-wrap gap-2" aria-label="นำทางบทเรียน">
+    <a href="ex4.html">← ก่อนหน้า</a>
+    <a class="secondary" href="../index.html">← กลับหน้าแรก</a>
+    <a href="ex6.html">ถัดไป →</a>
+  </nav>
 
-            // จัดกลุ่มจากค่า BMI ก่อนปัดเศษ
-            var category = "";
-            if (bmi < 18.5) {
-                category = "น้ำหนักน้อย";
-            } else if (bmi < 25) { // 18.5 ขึ้นไป แต่น้อยกว่า 25
-                category = "ปกติ";
-            } else { // 25 ขึ้นไป
-                category = "น้ำหนักเกิน";
-            }
+  <script>
+    document.getElementById("calc").addEventListener("click", function () {
+      const weightInput = document.getElementById("weight").value.trim();
+      const heightInput = document.getElementById("height").value.trim();
+      const result = document.getElementById("result");
 
-            // แสดงผลลัพธ์ทศนิยม 1 ตำแหน่ง รูปแบบ: BMI 20.8 (ปกติ)
-            document.getElementById("result").innerText = "BMI " + bmi.toFixed(1) + " (" + category + ")";
-        });
-    </script>
+      if (weightInput === "" || heightInput === "") {
+        result.textContent = "กรุณากรอกน้ำหนักและส่วนสูง";
+        return;
+      }
 
-</body>
-</html>
-</section>
-<div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap"><a class="back" href="../index.html">← กลับหน้าหลัก</a><a class="back" style="background:transparent;border:1px solid #ffffff55;color:#fff" href="../index.html#lessons">ดูบทเรียนทั้งหมด</a></div>
-</main>
+      const weight = Number(weightInput);
+      const heightCm = Number(heightInput);
 
-<nav id="lesson-sequence-nav" aria-label="นำทางบทเรียน" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0;padding:14px 16px;border:1px solid #52647b;border-radius:14px;background:#101d30;color:#fff"><style>#lesson-sequence-nav a.lesson-nav-link{display:inline-block;padding:11px 16px;border-radius:999px;background:#f5a623;color:#101827;text-decoration:none;font-weight:700}#lesson-sequence-nav .lesson-nav-disabled{display:inline-block;padding:11px 16px;border-radius:999px;border:1px solid #52647b;color:#9aa8b8}</style><a class="lesson-nav-link" href="ex4.html">← ก่อนหน้า</a><strong>Lesson 3 · Exercise 5</strong><a class="lesson-nav-link" href="ex6.html">ถัดไป →</a></nav>
+      if (!Number.isFinite(weight) || !Number.isFinite(heightCm) || weight <= 0 || heightCm <= 0) {
+        result.textContent = "กรุณากรอกน้ำหนักและส่วนสูงเป็นตัวเลขที่มากกว่า 0";
+        return;
+      }
+
+      const heightM = heightCm / 100;
+      const bmi = weight / (heightM * heightM);
+      let category = "";
+
+      if (bmi < 18.5) {
+        category = "น้ำหนักน้อย";
+      } else if (bmi < 25) {
+        category = "ปกติ";
+      } else {
+        category = "น้ำหนักเกิน";
+      }
+
+      result.textContent = "BMI " + bmi.toFixed(1) + " (" + category + ")";
+    });
+  </script>
 </body>
 </html>
